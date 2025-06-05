@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Contact • LOOP</title>
+  <meta name="description" content="Get in touch with the LOOP team. Join our beta waitlist or contact us for support and partnership opportunities.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/reset.css"/>
+  <link rel="stylesheet" href="assets/css/vars.css"/>
+  <link rel="stylesheet" href="assets/css/base.css"/>
+  <link rel="stylesheet" href="assets/css/header.css"/>
+  <link rel="stylesheet" href="assets/css/contact.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-logo">
+        <img src="assets/images/logo.svg" alt="LOOP Logo"/>
+        <span>LOOP</span>
+      </div>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="demo.html">Demo</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p>Have questions about LOOP? Want to join our beta program? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- Beta Announcement -->
+  <section class="container">
+    <div class="beta-announcement">
+      <h2>🚀 LOOP Beta Coming Soon!</h2>
+      <p>Be among the first to experience the future of AI-powered note-taking. Join our beta waitlist for early access, exclusive features, and special pricing.</p>
+      
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="email" id="betaEmail" placeholder="Enter your email" required>
+        <button type="submit">Join Beta Waitlist</button>
+      </form>
+      
+      <div id="waitlistStatus" class="status-message"></div>
+    </div>
+  </section>
+
+  <!-- Contact Form and Info -->
+  <section class="container">
+    <div class="contact-container">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2>Send us a Message</h2>
+        
+        <div id="contactStatus" class="status-message"></div>
+        
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <select id="subject" name="subject" required>
+              <option value="">Select a topic</option>
+              <option value="beta">Beta Program Inquiry</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="support">Technical Support</option>
+              <option value="feedback">Product Feedback</option>
+              <option value="media">Media & Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="organization">Organization (optional)</label>
+            <input type="text" id="organization" name="organization">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Tell us about your interest in LOOP, your use case, or any questions you have..." required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <div class="info-card">
+          <span class="icon">📧</span>
+          <h3>Email Us</h3>
+          <p>hello@loopnotes.ai</p>
+          <p>We typically respond within 24 hours</p>
+        </div>
+
+        <div class="info-card">
+          <span class="icon">💬</span>
+          <h3>Community</h3>
+          <p>Join our Discord community for discussions, feature requests, and beta updates</p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Discord">💬</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="GitHub">🐙</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <span class="icon">🚀</span>
+          <h3>Beta Program</h3>
+          <p>Join our beta to get early access and help shape the future of LOOP</p>
+          <p><strong>Benefits:</strong> Free premium features, direct developer feedback, priority support</p>
+        </div>
+
+        <div class="info-card">
+          <span class="icon">🤝</span>
+          <h3>Partnerships</h3>
+          <p>Interested in integrating LOOP into your educational platform or organization?</p>
+          <p>Let's discuss custom solutions and enterprise features</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>© 2025 LOOP. Built with ❤️ for brilliant minds.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="assets/js/theme-toggle.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.getElementById('contactForm');
+      const waitlistForm = document.getElementById('waitlistForm');
+      const contactStatus = document.getElementById('contactStatus');
+      const waitlistStatus = document.getElementById('waitlistStatus');
+
+      // Mock form submission functions
+      function showStatus(element, message, isSuccess = true) {
+        element.textContent = message;
+        element.className = `status-message ${isSuccess ? 'success' : 'error'}`;
+        element.style.display = 'block';
+        
+        setTimeout(() => {
+          element.style.display = 'none';
+        }, 5000);
+      }
+
+      // Contact form submission
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simulate form submission
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        // Mock API call
+        setTimeout(() => {
+          showStatus(contactStatus, 'Thank you for your message! We\'ll get back to you within 24 hours.');
+          contactForm.reset();
+        }, 1000);
+      });
+
+      // Waitlist form submission
+      waitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('betaEmail').value;
+        
+        // Basic email validation
+        if (!email || !email.includes('@')) {
+          showStatus(waitlistStatus, 'Please enter a valid email address.', false);
+          return;
+        }
+        
+        // Mock API call
+        setTimeout(() => {
+          showStatus(waitlistStatus, `🎉 Welcome to the LOOP beta waitlist! We'll email you at ${email} when spots are available.`);
+          waitlistForm.reset();
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
