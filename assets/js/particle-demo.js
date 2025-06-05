@@ -430,28 +430,94 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start animation
   animate(0);
 
-  // Performance monitoring
+  // Performance monitoring and adaptive quality
   let frameCount = 0;
-  let lastFpsTime = performance.now();
-  
-  function updateFPS() {
+  let lastFpsCheck = performance.now();
+  let fps = 60;
+  let adaptiveQuality = 1;
+
+  function updatePerformance() {
     frameCount++;
     const now = performance.now();
     
-    if (now - lastFpsTime >= 1000) {
-      const fps = Math.round(frameCount * 1000 / (now - lastFpsTime));
+    if (now - lastFpsCheck >= 1000) {
+      fps = Math.round((frameCount * 1000) / (now - lastFpsCheck));
       frameCount = 0;
-      lastFpsTime = now;
+      lastFpsCheck = now;
       
-      // Adjust quality based on performance
+      // Adaptive quality based on performance
       if (fps < 30) {
-        ctx.imageSmoothingEnabled = false;
-      } else {
-        ctx.imageSmoothingEnabled = true;
+        adaptiveQuality = Math.max(0.5, adaptiveQuality * 0.9);
+      } else if (fps > 50) {
+        adaptiveQuality = Math.min(1, adaptiveQuality * 1.1);
       }
     }
   }
 
-  // Update FPS in animation loop
-  setInterval(updateFPS, 100);
+  // Enhanced connection drawing with better performance
+  function drawConnections() {
+    if (connectionOpacity <= 0) return;
+    
+    ctx.globalAlpha = connectionOpacity * adaptiveQuality;
+    
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const distance = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        
+        if (distance < 150 * adaptiveQuality) {
+          const opacity = (1 - distance / 150) * 0.3;
+          
+          // Category-based connection colors
+          if (p1.topic.category === p2.topic.category) {
+            ctx.strokeStyle = p1.color + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+          } else {
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.1})`;
+          }
+          
+          ctx.lineWidth = Math.max(0.5, 2 * adaptiveQuality);
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    ctx.globalAlpha = 1;
+  }
+
+  // Main animation loop with performance monitoring
+  function animate() {
+    updatePerformance();
+    
+    // Clear canvas with fade effect for trails
+    ctx.fillStyle = 'rgba(22, 24, 41, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Update animation phase
+    updatePhase();
+    
+    // Update and draw particles
+    particles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    
+    // Draw enhanced connections
+    drawConnections();
+    
+    requestAnimationFrame(animate);
+  }
+
+  // Start animation
+  animate();
+
+  // FPS monitoring (for development)
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    setInterval(() => {
+      console.log(`FPS: ${fps}, Quality: ${adaptiveQuality.toFixed(2)}`);
+    }, 2000);
+  }
 });
