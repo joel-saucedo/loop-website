@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="20" r="8" fill="none" stroke="#DEA635" stroke-width="3"/>
+  <circle cx="28" cy="20" r="8" fill="none" stroke="#DEA635" stroke-width="3"/>
+  <text x="20" y="35" text-anchor="middle" fill="#353FE0" font-family="Arial, sans-serif" font-weight="bold" font-size="8">LOOP</text>
+</svg>

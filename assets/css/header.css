@@ -1,0 +1,65 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+}
+.site-logo img {
+  height: 40px;
+  width: 40px;
+  margin-right: 0.5rem;
+}
+.site-logo span {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-accent-blue);
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+.site-nav a {
+  margin-left: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  color: var(--color-text);
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-gold);
+  transition: width var(--transition-fast);
+}
+.site-nav a:hover::after {
+  width: 100%;
+}
+#theme-toggle {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  background: none;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  transition: background var(--transition-fast);
+}
+#theme-toggle:hover {
+  background: var(--color-card-bg);
+}
