@@ -15,60 +15,92 @@ body {
   padding: var(--spacing) 0;
 }
 
-/* Links */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 /* Buttons */
-button {
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: inherit;
-}
-
-/* Primary Button */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: var(--radius);
-  font-weight: 500;
-  transition: background var(--transition-fast);
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
 }
+
 .btn-primary {
   background: var(--color-accent-blue);
   color: #fff;
+  box-shadow: var(--shadow);
 }
+
 .btn-primary:hover {
-  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(53, 63, 224, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-accent-gold);
+  border: 2px solid var(--color-accent-gold);
+}
+
+.btn-secondary:hover {
+  background: var(--color-accent-gold);
+  color: var(--color-bg);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
   margin-bottom: var(--spacing);
+  font-weight: 600;
 }
+
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
 }
+
 h2 {
-  font-size: 2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.3;
 }
 
 /* Utility Classes */
 .text-center { text-align: center; }
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
 .pb-1 { padding-bottom: 1rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
 
-/* Footer */
-.site-footer {
-  background: var(--color-card-bg);
-  border-top: 1px solid var(--color-card-border);
-  padding: 2rem 0;
-  margin-top: 4rem;
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-peach);
+  border-radius: var(--radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-gold);
 }

@@ -1,15 +1,15 @@
 /* === Color & Typography Variables === */
 :root {
-  /* Primary Colors */
-  --color-bg: #ffffff;
-  --color-text: #1e1f37;
-  --color-accent-blue: #353FE0;  /* Your brand blue */
-  --color-accent-gold: #DEA635;  /* Complementary gold */
-  --color-accent-peach: #DFC0A5; /* Soft peach for highlights */
+  /* Primary Colors - Dark Theme Default */
+  --color-bg: #1E1F37;
+  --color-text: #DFDFDF;
+  --color-accent-blue: #353FE0;
+  --color-accent-gold: #DEA635;
+  --color-accent-peach: #DFC0A5;
 
   /* Card / Panel */
-  --color-card-bg: #ffffff;
-  --color-card-border: #353FE0;
+  --color-card-bg: #2A2C42;
+  --color-card-border: #DFC0A5;
 
   /* Typography */
   --font-heading: 'Poppins', sans-serif;
@@ -17,14 +17,23 @@
 
   /* Transitions & Layout */
   --transition-fast: 0.2s ease-in-out;
-  --radius: 8px;
+  --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --radius: 12px;
   --spacing: 1rem;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark‐Mode Overrides */
-html.dark {
-  --color-bg: #1E1F37;           /* Dark background */
-  --color-text: #DFDFDF;         /* Light text in dark mode */
-  --color-card-bg: #2A2C42;      /* Slightly lighter panel */
-  --color-card-border: #DFC0A5;  /* Peach border in dark mode */
+/* Light Mode Overrides */
+html.light {
+  --color-bg: #ffffff;
+  --color-text: #1e1f37;
+  --color-card-bg: #ffffff;
+  --color-card-border: #353FE0;
+}
+
+/* Particle Animation Variables */
+:root {
+  --particle-count: 50;
+  --particle-base-size: 4px;
+  --particle-max-size: 12px;
 }

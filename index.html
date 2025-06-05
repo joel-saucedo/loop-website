@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>LOOP • Learn Organize Outline Plan</title>
-  <meta name="description" content="LOOP - AI-powered note-taking Chrome extension with LaTeX support, offline-first, hierarchical notebooks.">
-  <meta property="og:title" content="LOOP • Learn Organize Outline Plan">
-  <meta property="og:description" content="Capture, organize, and AI-enhance your notes—offline or online, with full LaTeX support.">
-  <meta property="og:image" content="assets/images/logo.svg">
-  <meta property="og:url" content="https://yourusername.github.io/">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="LOOP - AI-powered note-taking Chrome extension with LaTeX support, offline-first, hierarchical notebooks. Stay in the Loop.">
   
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
   
-  <!-- CSS Files -->
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/reset.css"/>
   <link rel="stylesheet" href="assets/css/vars.css"/>
   <link rel="stylesheet" href="assets/css/base.css"/>
   <link rel="stylesheet" href="assets/css/header.css"/>
   <link rel="stylesheet" href="assets/css/hero.css"/>
+  
+  <!-- SEO Meta Tags -->
+  <meta property="og:title" content="LOOP • Learn Organize Outline Plan">
+  <meta property="og:description" content="Stay in the Loop - AI-powered note-taking with hierarchical organization and LaTeX support.">
+  <meta property="og:image" content="assets/images/logo.png">
+  <meta property="og:url" content="https://yourusername.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="container">
       <div class="site-logo">
-        <img src="assets/images/logo.svg" alt="LOOP Logo"/>
+        <img src="assets/images/logo.png" alt="LOOP Logo"/>
         <span>LOOP</span>
       </div>
       <nav class="site-nav">
@@ -34,18 +36,35 @@
         <a href="demo.html">Demo</a>
         <a href="pricing.html">Pricing</a>
         <a href="contact.html">Contact</a>
-        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </nav>
+      <div class="header-controls">
+        <button id="theme-toggle" aria-label="Toggle theme">◐</button>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content container">
+      <div class="tagline">Stay in the Loop</div>
       <h1>Transform Chaos into Clarity</h1>
-      <p>Capture, organize, and AI-enhance your notes—offline or online, complete with LaTeX support and intelligent hierarchical organization.</p>
-      <a href="features.html" class="btn btn-primary">Get Started</a>
+      <p>Capture, organize, and AI-enhance your notes with hierarchical structure, offline-first storage, and complete LaTeX support. Experience the future of intelligent note-taking.</p>
+      
+      <!-- Interactive Particle Demo -->
+      <div class="particle-demo-container">
+        <div class="demo-prompt">
+          <strong>Physics Syllabus Input:</strong> "Quantum mechanics, wave functions, Schrödinger equation, particle physics, thermodynamics..."
+        </div>
+        <canvas class="particle-canvas" id="particleCanvas"></canvas>
+        <div class="demo-status" id="demoStatus">Click and drag to reorganize • AI structuring in progress</div>
+      </div>
+      
+      <div class="hero-buttons">
+        <a href="features.html" class="btn btn-primary">Start 7-Day Free Trial</a>
+        <a href="demo.html" class="btn btn-secondary">View Demo</a>
+      </div>
     </div>
+    
     <!-- Floating geometric shapes -->
     <div class="shape-layer">
       <div class="shape shape-blue" data-depth="0.15"></div>
@@ -57,12 +76,13 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container text-center">
-      <p>© 2025 LOOP. Built with ❤️ for brilliant minds.</p>
+      <p>&copy; 2025 LOOP. Engineered for Knowledge Workers.</p>
     </div>
   </footer>
 
   <!-- JavaScript -->
   <script src="assets/js/theme-toggle.js"></script>
   <script src="assets/js/mouse-parallax.js"></script>
+  <script src="assets/js/particle-demo.js"></script>
 </body>
 </html>

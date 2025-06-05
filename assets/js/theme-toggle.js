@@ -1,22 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("theme-toggle");
+  const html = document.documentElement;
   
-  // On load, apply saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.classList.add("dark");
-    toggle.textContent = "☀️";
+  // Set default to dark theme
+  if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme", "dark");
+    html.classList.add("dark");
+    html.classList.remove("light");
   } else {
-    toggle.textContent = "🌓";
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      html.classList.add("light");
+      html.classList.remove("dark");
+      toggle.textContent = "◑";
+    } else {
+      html.classList.add("dark");
+      html.classList.remove("light");
+      toggle.textContent = "◐";
+    }
   }
   
   toggle.addEventListener("click", () => {
-    document.documentElement.classList.toggle("dark");
-    if (document.documentElement.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-      toggle.textContent = "☀️";
-    } else {
+    if (html.classList.contains("dark")) {
+      html.classList.remove("dark");
+      html.classList.add("light");
       localStorage.setItem("theme", "light");
-      toggle.textContent = "🌓";
+      toggle.textContent = "◑";
+    } else {
+      html.classList.remove("light");
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      toggle.textContent = "◐";
     }
   });
 });

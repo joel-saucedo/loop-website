@@ -3,63 +3,102 @@
   top: 0;
   left: 0;
   right: 0;
-  background: var(--color-bg);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: rgba(30, 31, 55, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(223, 192, 165, 0.1);
   z-index: 100;
+  transition: all var(--transition-fast);
 }
+
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: 70px;
 }
+
 .site-logo {
   display: flex;
   align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
+
 .site-logo img {
-  height: 40px;
-  width: 40px;
-  margin-right: 0.5rem;
+  height: 45px;
+  width: 45px;
+  margin-right: 0.75rem;
+  border-radius: var(--radius);
 }
+
 .site-logo span {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
   color: var(--color-accent-blue);
+  letter-spacing: -0.02em;
 }
+
 .site-nav {
   display: flex;
   align-items: center;
+  gap: 2rem;
 }
+
 .site-nav a {
-  margin-left: 1.5rem;
   font-weight: 500;
   position: relative;
   color: var(--color-text);
+  padding: 0.5rem 0;
+  transition: color var(--transition-fast);
 }
+
 .site-nav a::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-accent-gold);
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-peach));
   transition: width var(--transition-fast);
+  border-radius: 1px;
 }
+
+.site-nav a:hover {
+  color: var(--color-accent-gold);
+}
+
 .site-nav a:hover::after {
   width: 100%;
 }
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 #theme-toggle {
-  font-size: 1.2rem;
-  color: var(--color-text);
-  background: none;
-  margin-left: 1rem;
   padding: 0.5rem;
   border-radius: var(--radius);
-  transition: background var(--transition-fast);
-}
-#theme-toggle:hover {
   background: var(--color-card-bg);
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+  border: 1px solid var(--color-card-border);
+}
+
+#theme-toggle:hover {
+  background: var(--color-accent-peach);
+  color: var(--color-bg);
+  transform: scale(1.05);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .site-nav {
+    display: none;
+  }
+  
+  .site-header .container {
+    padding: 0 1rem;
+  }
 }
