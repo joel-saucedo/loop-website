@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - LOOP | Learn Organize Outline Plan</title>
+    <meta name="description" content="Start your LOOP journey with a 7-day free trial. Choose the plan that fits your learning and organization needs.">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/vars.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    
+    <!-- Pricing specific styles -->
+    <style>
+        .pricing-hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-surface) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pricing-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .trial-banner {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trial-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .trial-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .toggle-switch {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            display: flex;
+            position: relative;
+        }
+        
+        .toggle-option {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+        
+        .toggle-option.active {
+            background: var(--color-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .savings-badge {
+            background: var(--color-accent);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            margin-left: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--color-primary);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(76, 99, 210, 0.1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+        
+        .plan-price .period {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+        
+        .plan-trial {
+            background: rgba(76, 99, 210, 0.1);
+            color: var(--color-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-secondary);
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: bold;
+            margin-right: 0.75rem;
+            width: 16px;
+        }
+        
+        .plan-button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .plan-button.primary {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .plan-button.secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .plan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(76, 99, 210, 0.2);
+        }
+        
+        .faq-section {
+            margin-top: 6rem;
+        }
+        
+        .faq-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-text);
+        }
+        
+        .faq-grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+        
+        .faq-answer {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="LOOP" class="logo-image">
+                <span class="logo-text">LOOP</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="demo.html" class="nav-link">Demo</a>
+                <a href="pricing.html" class="nav-link active">Pricing</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon"></span>
+                </button>
+                <a href="#" class="btn-primary">Start Free Trial</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="pricing-container">
+            <h1 class="pricing-title">Simple, Transparent Pricing</h1>
+            <p class="pricing-subtitle">
+                Start with our free trial and upgrade when you're ready. No hidden fees, 
+                cancel anytime. Stay in the Loop with affordable AI-powered learning.
+            </p>
+            
+            <div class="trial-banner">
+                <p class="trial-text">◆ 7-Day Free Trial • No Credit Card Required • Full Access to All Features</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-container">
+        <!-- Billing Toggle -->
+        <div class="pricing-toggle">
+            <div class="toggle-switch">
+                <div class="toggle-option active" data-billing="monthly">Monthly</div>
+                <div class="toggle-option" data-billing="yearly">
+                    Yearly 
+                    <span class="savings-badge">Save 20%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="pricing-grid">
+            <!-- Free Trial -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Free Trial</h3>
+                <p class="plan-description">Perfect for getting started and exploring LOOP's capabilities</p>
+                <div class="plan-price">
+                    <span class="currency">$</span>0
+                    <span class="period">/ 7 days</span>
+                </div>
+                <div class="plan-trial">Full access to all features</div>
+                <ul class="plan-features">
+                    <li>AI-powered organization</li>
+                    <li>Smart outline generation</li>
+                    <li>Chrome extension access</li>
+                    <li>Real-time collaboration</li>
+                    <li>Advanced search</li>
+                    <li>Up to 100 notes</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="#" class="plan-button secondary">Start Free Trial</a>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card popular">
+                <h3 class="plan-name">LOOP Pro</h3>
+                <p class="plan-description">For serious learners, students, and professionals</p>
+                <div class="plan-price" id="pro-price">
+                    <span class="currency">$</span>19
+                    <span class="period">/ month</span>
+                </div>
+                <div class="plan-trial">7-day free trial included</div>
+                <ul class="plan-features">
+                    <li>Everything in Free Trial</li>
+                    <li>Unlimited notes and projects</li>
+                    <li>Advanced AI insights</li>
+                    <li>Custom templates</li>
+                    <li>Priority support</li>
+                    <li>Data export options</li>
+                    <li>Advanced analytics</li>
+                    <li>Team collaboration (up to 5 users)</li>
+                </ul>
+                <a href="#" class="plan-button primary">Choose Pro Plan</a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Enterprise</h3>
+                <p class="plan-description">For teams and organizations with advanced needs</p>
+                <div class="plan-price">
+                    Custom
+                    <span class="period">pricing</span>
+                </div>
+                <div class="plan-trial">Custom trial period</div>
+                <ul class="plan-features">
+                    <li>Everything in Pro</li>
+                    <li>Unlimited team members</li>
+                    <li>Custom integrations</li>
+                    <li>Advanced security features</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom training sessions</li>
+                    <li>SLA guarantees</li>
+                    <li>On-premise deployment options</li>
+                </ul>
+                <a href="contact.html" class="plan-button secondary">Contact Sales</a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">How does the free trial work?</h3>
+                    <p class="faq-answer">Your 7-day free trial gives you full access to all LOOP features with no restrictions. No credit card required to start, and you can cancel anytime.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I upgrade or downgrade my plan?</h3>
+                    <p class="faq-answer">Yes! You can change your plan at any time. Upgrades take effect immediately, and downgrades take effect at the end of your current billing cycle.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">What happens to my data if I cancel?</h3>
+                    <p class="faq-answer">Your data remains accessible for 30 days after cancellation. You can export all your notes and continue using them elsewhere, or reactivate your account.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Is there a student discount?</h3>
+                    <p class="faq-answer">Yes! Students receive 50% off Pro plans with a valid .edu email address. Contact us for verification and discount application.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">How secure is my data?</h3>
+                    <p class="faq-answer">We use enterprise-grade encryption and security measures. Your data is encrypted in transit and at rest, and we never share your information with third parties.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer refunds?</h3>
+                    <p class="faq-answer">We offer a 30-day money-back guarantee on all paid plans. If you're not satisfied, we'll provide a full refund, no questions asked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="assets/js/theme-toggle.js"></script>
+    <script>
+        // Billing toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleOptions = document.querySelectorAll('.toggle-option');
+            const proPrice = document.getElementById('pro-price');
+            
+            toggleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    toggleOptions.forEach(opt => opt.classList.remove('active'));
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update pricing
+                    const billing = this.dataset.billing;
+                    if (billing === 'yearly') {
+                        proPrice.innerHTML = '<span class="currency">$</span>15<span class="period">/ month</span>';
+                    } else {
+                        proPrice.innerHTML = '<span class="currency">$</span>19<span class="period">/ month</span>';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

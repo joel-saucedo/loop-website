@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - LOOP | Learn Organize Outline Plan</title>
+    <meta name="description" content="Experience LOOP's AI-powered features with interactive demos. See how AI organization transforms scattered notes into structured knowledge.">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/vars.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    
+    <!-- Demo specific styles -->
+    <style>
+        .demo-hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-surface) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .demo-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .demo-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-tab {
+            padding: 1rem 2rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+        
+        .demo-tab.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+        
+        .demo-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .demo-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .demo-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .demo-button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .demo-button:disabled {
+            background: var(--color-text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .demo-workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-panel {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-height: 300px;
+        }
+        
+        .panel-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .note-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .note-item:hover {
+            border-color: var(--color-primary);
+            transform: translateX(4px);
+        }
+        
+        .note-title {
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .note-preview {
+            color: var(--color-text-secondary);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: rgba(76, 99, 210, 0.1);
+            color: var(--color-primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.25rem 0.25rem 0 0;
+        }
+        
+        .outline-item {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--color-border);
+        }
+        
+        .outline-item.level-1 {
+            padding-left: 0;
+            border-left: none;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .outline-item.level-2 {
+            padding-left: 1rem;
+            border-left-color: var(--color-primary);
+        }
+        
+        .outline-item.level-3 {
+            padding-left: 2rem;
+            border-left-color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+        
+        .search-demo {
+            margin-bottom: 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        .search-results {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .search-result {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .search-result:hover {
+            background: var(--color-surface);
+        }
+        
+        .search-result:last-child {
+            border-bottom: none;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--color-text-secondary);
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-border);
+            border-top: 2px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-title {
+                font-size: 2rem;
+            }
+            
+            .demo-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .demo-workspace {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="LOOP" class="logo-image">
+                <span class="logo-text">LOOP</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="features.html" class="nav-link">Features</a>
+                <a href="demo.html" class="nav-link active">Demo</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon"></span>
+                </button>
+                <a href="pricing.html" class="btn-primary">Start Free Trial</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Demo Hero -->
+    <section class="demo-hero">
+        <div class="demo-container">
+            <h1 class="demo-title">Experience LOOP in Action</h1>
+            <p class="demo-subtitle">
+                See how our AI transforms scattered notes into organized knowledge. 
+                Try these interactive demos to understand the power of intelligent note-taking.
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Content -->
+    <section class="demo-container">
+        <!-- Demo Tabs -->
+        <div class="demo-tabs">
+            <div class="demo-tab active" data-demo="organization">AI Organization</div>
+            <div class="demo-tab" data-demo="outline">Smart Outlines</div>
+            <div class="demo-tab" data-demo="search">Advanced Search</div>
+            <div class="demo-tab" data-demo="collaboration">Collaboration</div>
+        </div>
+
+        <!-- AI Organization Demo -->
+        <div class="demo-content active" id="organization-demo">
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2 class="demo-section-title">AI Organization Demo</h2>
+                    <button class="demo-button" id="organize-btn">Organize Notes</button>
+                </div>
+                
+                <div class="demo-workspace">
+                    <div class="demo-panel">
+                        <div class="panel-title">◦ Scattered Notes</div>
+                        <div id="scattered-notes">
+                            <div class="note-item">
+                                <div class="note-title">Newton's Laws</div>
+                                <div class="note-preview">Objects at rest stay at rest, objects in motion...</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Quantum Mechanics Basics</div>
+                                <div class="note-preview">Wave-particle duality, uncertainty principle...</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Thermodynamics</div>
+                                <div class="note-preview">Heat transfer, entropy, first law...</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Motion Equations</div>
+                                <div class="note-preview">v = u + at, s = ut + ½at²...</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Wave Properties</div>
+                                <div class="note-preview">Frequency, wavelength, amplitude...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-panel">
+                        <div class="panel-title">◎ Organized Topics</div>
+                        <div id="organized-notes">
+                            <div class="loading-indicator" style="display: none;">
+                                <div class="spinner"></div>
+                                AI is analyzing and organizing...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="organization-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Outlines Demo -->
+        <div class="demo-content" id="outline-demo">
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2 class="demo-section-title">Smart Outline Generation</h2>
+                    <button class="demo-button" id="outline-btn">Generate Outline</button>
+                </div>
+                
+                <div class="demo-workspace">
+                    <div class="demo-panel">
+                        <div class="panel-title">📚 Source Material</div>
+                        <div id="source-content">
+                            <div class="note-item">
+                                <div class="note-title">Classical Mechanics</div>
+                                <div class="note-preview">Study of motion, forces, energy...</div>
+                                <div class="tag">Physics</div><div class="tag">Mechanics</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Quantum Physics</div>
+                                <div class="note-preview">Subatomic particles, wave functions...</div>
+                                <div class="tag">Physics</div><div class="tag">Quantum</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Relativity Theory</div>
+                                <div class="note-preview">Space-time, mass-energy equivalence...</div>
+                                <div class="tag">Physics</div><div class="tag">Relativity</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-panel">
+                        <div class="panel-title">⧈ Generated Outline</div>
+                        <div id="generated-outline">
+                            <div class="loading-indicator" style="display: none;">
+                                <div class="spinner"></div>
+                                Generating structured outline...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="outline-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Search Demo -->
+        <div class="demo-content" id="search-demo">
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2 class="demo-section-title">AI-Powered Search</h2>
+                </div>
+                
+                <div class="search-demo">
+                    <input type="text" class="search-input" id="search-input" 
+                           placeholder="Try searching for 'energy conservation' or 'how do waves work?'">
+                    <div class="search-results" id="search-results" style="display: none;"></div>
+                </div>
+                
+                <div class="demo-workspace">
+                    <div class="demo-panel">
+                        <div class="panel-title">◐ Search Suggestions</div>
+                        <div>
+                            <div class="note-item" onclick="performSearch('energy conservation')">
+                                <div class="note-title">Search: "energy conservation"</div>
+                                <div class="note-preview">Find content about conservation of energy</div>
+                            </div>
+                            <div class="note-item" onclick="performSearch('how do waves work')">
+                                <div class="note-title">Search: "how do waves work?"</div>
+                                <div class="note-preview">Natural language query about wave mechanics</div>
+                            </div>
+                            <div class="note-item" onclick="performSearch('quantum mechanics basics')">
+                                <div class="note-title">Search: "quantum mechanics basics"</div>
+                                <div class="note-preview">Find introductory quantum physics content</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-panel">
+                        <div class="panel-title">📊 Search Analytics</div>
+                        <div id="search-analytics">
+                            <p><strong>Search Speed:</strong> ~50ms average</p>
+                            <p><strong>Accuracy:</strong> 94% relevance score</p>
+                            <p><strong>Coverage:</strong> 100% of your notes indexed</p>
+                            <p><strong>AI Understanding:</strong> Natural language processing enabled</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collaboration Demo -->
+        <div class="demo-content" id="collaboration-demo">
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2 class="demo-section-title">Real-time Collaboration</h2>
+                    <button class="demo-button" id="collaborate-btn">Start Collaboration</button>
+                </div>
+                
+                <div class="demo-workspace">
+                    <div class="demo-panel">
+                        <div class="panel-title">👤 Your View</div>
+                        <div id="user-view">
+                            <div class="note-item">
+                                <div class="note-title">Study Group: Physics Final</div>
+                                <div class="note-preview">Preparing for quantum mechanics exam...</div>
+                                <div class="tag">Active</div><div class="tag">3 collaborators</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">Project: Renewable Energy</div>
+                                <div class="note-preview">Research on solar panel efficiency...</div>
+                                <div class="tag">In Progress</div><div class="tag">2 collaborators</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-panel">
+                        <div class="panel-title">◈ Team Activity</div>
+                        <div id="team-activity">
+                            <div class="loading-indicator" style="display: none;">
+                                <div class="spinner"></div>
+                                Connecting to collaboration session...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="collaboration-progress"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="assets/js/theme-toggle.js"></script>
+    <script>
+        // Demo functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.demo-tab');
+            const contents = document.querySelectorAll('.demo-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active classes
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class
+                    this.classList.add('active');
+                    const demoId = this.dataset.demo + '-demo';
+                    document.getElementById(demoId).classList.add('active');
+                });
+            });
+            
+            // Organization demo
+            document.getElementById('organize-btn').addEventListener('click', function() {
+                this.disabled = true;
+                const loading = document.querySelector('#organized-notes .loading-indicator');
+                const progress = document.getElementById('organization-progress');
+                
+                loading.style.display = 'flex';
+                
+                // Simulate AI processing
+                let progressValue = 0;
+                const interval = setInterval(() => {
+                    progressValue += 20;
+                    progress.style.width = progressValue + '%';
+                    
+                    if (progressValue >= 100) {
+                        clearInterval(interval);
+                        loading.style.display = 'none';
+                        
+                        // Show organized results
+                        document.getElementById('organized-notes').innerHTML = `
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="color: var(--color-primary);">📚 Classical Physics</strong>
+                                <div class="note-item" style="margin: 0.5rem 0 0 1rem;">
+                                    <div class="note-title">Newton's Laws</div>
+                                    <div class="tag">Mechanics</div>
+                                </div>
+                                <div class="note-item" style="margin: 0.5rem 0 0 1rem;">
+                                    <div class="note-title">Motion Equations</div>
+                                    <div class="tag">Kinematics</div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="color: var(--color-accent);">⟲ Modern Physics</strong>
+                                <div class="note-item" style="margin: 0.5rem 0 0 1rem;">
+                                    <div class="note-title">Quantum Mechanics</div>
+                                    <div class="tag">Quantum</div>
+                                </div>
+                                <div class="note-item" style="margin: 0.5rem 0 0 1rem;">
+                                    <div class="note-title">Wave Properties</div>
+                                    <div class="tag">Waves</div>
+                                </div>
+                            </div>
+                            <div>
+                                <strong style="color: var(--color-secondary);">🔥 Thermodynamics</strong>
+                                <div class="note-item" style="margin: 0.5rem 0 0 1rem;">
+                                    <div class="note-title">Heat Transfer</div>
+                                    <div class="tag">Energy</div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        this.disabled = false;
+                        this.textContent = 'Reorganize';
+                    }
+                }, 500);
+            });
+            
+            // Outline demo
+            document.getElementById('outline-btn').addEventListener('click', function() {
+                this.disabled = true;
+                const loading = document.querySelector('#generated-outline .loading-indicator');
+                const progress = document.getElementById('outline-progress');
+                
+                loading.style.display = 'flex';
+                
+                let progressValue = 0;
+                const interval = setInterval(() => {
+                    progressValue += 25;
+                    progress.style.width = progressValue + '%';
+                    
+                    if (progressValue >= 100) {
+                        clearInterval(interval);
+                        loading.style.display = 'none';
+                        
+                        document.getElementById('generated-outline').innerHTML = `
+                            <div class="outline-item level-1">I. Physics Fundamentals</div>
+                            <div class="outline-item level-2">A. Classical Mechanics</div>
+                            <div class="outline-item level-3">1. Motion and Forces</div>
+                            <div class="outline-item level-3">2. Energy Conservation</div>
+                            <div class="outline-item level-2">B. Thermodynamics</div>
+                            <div class="outline-item level-3">1. Heat Transfer</div>
+                            <div class="outline-item level-3">2. Entropy</div>
+                            <div class="outline-item level-1">II. Modern Physics</div>
+                            <div class="outline-item level-2">A. Quantum Mechanics</div>
+                            <div class="outline-item level-3">1. Wave-Particle Duality</div>
+                            <div class="outline-item level-3">2. Uncertainty Principle</div>
+                            <div class="outline-item level-2">B. Relativity</div>
+                            <div class="outline-item level-3">1. Special Relativity</div>
+                            <div class="outline-item level-3">2. General Relativity</div>
+                        `;
+                        
+                        this.disabled = false;
+                        this.textContent = 'Regenerate';
+                    }
+                }, 400);
+            });
+            
+            // Search demo
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                if (query.length > 2) {
+                    performSearch(query);
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Collaboration demo
+            document.getElementById('collaborate-btn').addEventListener('click', function() {
+                this.disabled = true;
+                const loading = document.querySelector('#team-activity .loading-indicator');
+                const progress = document.getElementById('collaboration-progress');
+                
+                loading.style.display = 'flex';
+                
+                let progressValue = 0;
+                const interval = setInterval(() => {
+                    progressValue += 33;
+                    progress.style.width = progressValue + '%';
+                    
+                    if (progressValue >= 100) {
+                        clearInterval(interval);
+                        loading.style.display = 'none';
+                        
+                        document.getElementById('team-activity').innerHTML = `
+                            <div class="note-item">
+                                <div class="note-title">💬 Sarah added a comment</div>
+                                <div class="note-preview">"Great insight on quantum tunneling!"</div>
+                                <div class="tag">2 min ago</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">✏️ Alex edited "Wave Functions"</div>
+                                <div class="note-preview">Added mathematical proofs section</div>
+                                <div class="tag">5 min ago</div>
+                            </div>
+                            <div class="note-item">
+                                <div class="note-title">📎 Mike shared resources</div>
+                                <div class="note-preview">Added 3 research papers</div>
+                                <div class="tag">8 min ago</div>
+                            </div>
+                        `;
+                        
+                        this.disabled = false;
+                        this.textContent = 'Refresh Activity';
+                    }
+                }, 600);
+            });
+        });
+        
+        // Search function
+        function performSearch(query) {
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.value = query;
+            
+            // Simulate search results
+            const results = [
+                {
+                    title: "Energy Conservation in Classical Mechanics",
+                    preview: "The principle that energy cannot be created or destroyed...",
+                    relevance: "95%"
+                },
+                {
+                    title: "Wave Mechanics Fundamentals", 
+                    preview: "Waves transfer energy through oscillations...",
+                    relevance: "89%"
+                },
+                {
+                    title: "Quantum Energy States",
+                    preview: "Discrete energy levels in quantum systems...",
+                    relevance: "78%"
+                }
+            ];
+            
+            searchResults.innerHTML = results.map(result => `
+                <div class="search-result">
+                    <div style="font-weight: 500; margin-bottom: 0.25rem;">${result.title}</div>
+                    <div style="font-size: 0.85rem; color: var(--color-text-secondary);">${result.preview}</div>
+                    <div style="font-size: 0.75rem; color: var(--color-primary); margin-top: 0.25rem;">Relevance: ${result.relevance}</div>
+                </div>
+            `).join('');
+            
+            searchResults.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
