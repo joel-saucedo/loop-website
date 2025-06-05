@@ -1,0 +1,103 @@
+/* === Performance Optimizations === */
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize scrolling performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Reduce paint and layout thrashing */
+.optimized-transition {
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Intersection Observer loading states */
+.lazy-load {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Preload critical resources */
+.preload-bg {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><rect width="1" height="1" fill="%23161829"/></svg>');
+}
+
+/* Critical CSS inlining helpers */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Reduce reflow/repaint on hover states */
+.hover-optimize {
+  contain: layout;
+}
+
+.hover-optimize:hover {
+  contain: none;
+}
+
+/* Memory optimization for large lists */
+.virtual-scroll {
+  contain: strict;
+  overflow: hidden;
+}
+
+/* Touch optimization */
+.touch-optimized {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Font loading optimization */
+.font-loading .hero h1,
+.font-loading .hero .tagline {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Critical path CSS for first paint */
+.critical-styles {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0B0D1A;
+  color: #F8FAFC;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .optimized-transition {
+    transition: none;
+  }
+  
+  .lazy-load {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* High contrast mode optimizations */
+@media (prefers-contrast: high) {
+  .gpu-accelerated {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .preload-bg {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><rect width="1" height="1" fill="%230B0D1A"/></svg>');
+  }
+}
