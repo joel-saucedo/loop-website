@@ -1,0 +1,438 @@
+/* === Mathematical Design System === */
+
+/* Mathematical Animations */
+@keyframes fibonacci-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  33% { transform: scale(1.05) rotate(1deg); }
+  66% { transform: scale(0.98) rotate(-0.5deg); }
+}
+
+@keyframes golden-spiral {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.05); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(0.95); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes fourier-wave {
+  0% { transform: translateX(0) scaleX(1); }
+  50% { transform: translateX(5px) scaleX(1.02); }
+  100% { transform: translateX(0) scaleX(1); }
+}
+
+@keyframes matrix-glitch {
+  0%, 90% { transform: translate(0); filter: hue-rotate(0deg); }
+  10% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+  20% { transform: translate(-2px, -2px); filter: hue-rotate(180deg); }
+  30% { transform: translate(2px, 2px); filter: hue-rotate(270deg); }
+  40% { transform: translate(2px, -2px); filter: hue-rotate(360deg); }
+}
+
+@keyframes neural-network {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* Mathematical Grid System */
+.grid-golden {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(100px * var(--golden-ratio)), 1fr));
+  gap: var(--grid-golden);
+}
+
+.grid-fibonacci {
+  display: grid;
+  grid-template-columns: 
+    var(--grid-fibonacci-sm) 
+    var(--grid-fibonacci-md) 
+    var(--grid-fibonacci-lg) 
+    var(--grid-fibonacci-xl);
+  gap: var(--grid-unit);
+}
+
+/* Mathematical Elements */
+.mathematical-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.mathematical-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-fourier);
+  opacity: 0.03;
+  pointer-events: none;
+  animation: fourier-wave 8s ease-in-out infinite;
+}
+
+.mathematical-container::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 48px,
+      var(--color-primary)08 49px,
+      var(--color-primary)08 51px,
+      transparent 52px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 48px,
+      var(--color-accent)06 49px,
+      var(--color-accent)06 51px,
+      transparent 52px
+    );
+  pointer-events: none;
+  animation: golden-spiral 20s linear infinite;
+}
+
+/* Mathematical Canvas Background */
+.mathematical-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.1;
+  mix-blend-mode: normal;
+  transition: opacity 0.3s ease;
+}
+
+.hero .mathematical-canvas {
+  opacity: 0.15;
+  mix-blend-mode: normal;
+}
+
+/* Glitch Effects */
+.glitch-text {
+  position: relative;
+  color: var(--color-text);
+  font-family: var(--font-mathematical);
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: var(--color-primary);
+  animation: matrix-glitch 2s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-text::after {
+  color: var(--color-accent);
+  animation: matrix-glitch 3s infinite linear alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+.glitch-text:hover::before {
+  animation-duration: 0.1s;
+}
+
+.glitch-text:hover::after {
+  animation-duration: 0.1s;
+}
+
+/* Mathematical Shapes */
+.mathematical-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gradient-mathematical);
+  opacity: 0.1;
+  animation: fibonacci-pulse 6s ease-in-out infinite;
+}
+
+.mathematical-shape:nth-child(2) {
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.mathematical-shape:nth-child(3) {
+  animation-delay: 4s;
+  animation-duration: 10s;
+}
+
+.fibonacci-spiral {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  animation: golden-spiral 20s linear infinite;
+}
+
+.fibonacci-spiral::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% / var(--golden-ratio));
+  height: calc(100% / var(--golden-ratio));
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: golden-spiral 15s linear infinite reverse;
+}
+
+.golden-section {
+  position: relative;
+  width: calc(100px * var(--golden-ratio));
+  height: 100px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-transparent) 0%,
+    var(--color-primary-transparent) 61.8%,
+    var(--color-accent-transparent) 61.8%,
+    var(--color-accent-transparent) 100%
+  );
+  border-radius: var(--border-radius-fibonacci);
+}
+
+/* Recursive Patterns */
+.fractal-tree {
+  position: relative;
+  width: 2px;
+  height: 100px;
+  background: var(--color-primary);
+  transform-origin: bottom center;
+  animation: fibonacci-pulse 3s ease-in-out infinite;
+}
+
+.fractal-tree::before,
+.fractal-tree::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  width: 2px;
+  height: calc(100px / var(--golden-ratio));
+  background: var(--color-accent);
+  transform-origin: bottom center;
+}
+
+.fractal-tree::before {
+  left: 0;
+  transform: rotate(-30deg);
+  animation: fibonacci-pulse 3s ease-in-out infinite 0.5s;
+}
+
+.fractal-tree::after {
+  right: 0;
+  transform: rotate(30deg);
+  animation: fibonacci-pulse 3s ease-in-out infinite 1s;
+}
+
+/* Neural Network Visualization */
+.neural-node {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 
+    0 0 10px var(--color-primary)66,
+    0 0 20px var(--color-primary)33,
+    0 0 30px var(--color-primary)1A;
+  animation: neural-network 3s ease-in-out infinite;
+}
+
+.neural-connection {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    var(--color-primary)80 0%, 
+    var(--color-accent)40 50%, 
+    transparent 100%);
+  transform-origin: left center;
+  animation: fourier-wave 4s ease-in-out infinite;
+}
+
+/* Fourier Transform Visualization */
+.fourier-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.fourier-wave {
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: var(--gradient-neural);
+  top: 50%;
+  left: -100%;
+  animation: fourier-wave 3s linear infinite;
+  filter: blur(0.5px);
+}
+
+.fourier-wave:nth-child(2) {
+  animation-delay: 0.5s;
+  opacity: 0.7;
+  top: 45%;
+}
+
+.fourier-wave:nth-child(3) {
+  animation-delay: 1s;
+  opacity: 0.5;
+  top: 55%;
+}
+
+/* Hacker Terminal Effects */
+.terminal-text {
+  font-family: var(--font-mathematical);
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  background: rgba(0, 0, 0, 0.9);
+  padding: var(--spacing-fibonacci-sm);
+  border-radius: var(--border-radius-fibonacci);
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid var(--color-accent-transparent);
+}
+
+.terminal-text::before {
+  content: '> ';
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.typing-cursor::after {
+  content: '█';
+  color: var(--color-primary);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--color-accent);
+  animation: terminal-blink 1s infinite;
+}
+
+@keyframes terminal-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Mathematical Button Enhancements */
+.btn-mathematical {
+  position: relative;
+  background: var(--gradient-mathematical);
+  border: 1px solid var(--color-primary)40;
+  color: var(--color-text);
+  font-family: var(--font-mathematical);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-mathematical::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-primary)20, 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-mathematical:hover::before {
+  left: 100%;
+}
+
+.btn-mathematical:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 25px var(--color-primary)30,
+    0 4px 15px var(--color-accent)20;
+  border-color: var(--color-primary);
+}
+
+/* Responsive Mathematical Grid */
+@media (max-width: 768px) {
+  .grid-fibonacci {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-unit);
+  }
+  
+  .mathematical-shape {
+    transform: scale(0.7);
+  }
+  
+  .neural-node {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Accessibility for Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mathematical-shape,
+  .neural-node,
+  .fourier-wave,
+  .mathematical-container::before,
+  .mathematical-container::after {
+    animation: none;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none;
+  }
+}
+
+/* Dark Mode Adaptations */
+@media (prefers-color-scheme: dark) {
+  .mathematical-canvas {
+    opacity: 0.6;
+    mix-blend-mode: lighten;
+  }
+  
+  .terminal-text {
+    background: rgba(0, 0, 0, 0.95);
+    border-color: var(--color-primary-transparent);
+  }
+}
+
+/* Performance Optimizations for Mathematical Effects */
+.mathematical-container {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.mathematical-shape {
+  transform-style: preserve-3d;
+  will-change: transform;
+}

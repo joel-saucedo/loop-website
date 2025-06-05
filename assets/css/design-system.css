@@ -1,0 +1,293 @@
+/* LOOP Design System - Mathematical Harmony & Aesthetic Proportions */
+
+:root {
+  /* Golden Ratio & Fibonacci Design Tokens */
+  --phi: 1.618;
+  --phi-inverse: 0.618;
+  
+  /* Typography Scale - Golden Ratio Based */
+  --font-xs: 0.618rem;     /* φ⁻¹ */
+  --font-sm: 1rem;         /* base */
+  --font-base: 1.618rem;   /* φ */
+  --font-lg: 2.618rem;     /* φ + 1 */
+  --font-xl: 4.236rem;     /* φ² */
+  --font-xxl: 6.854rem;    /* φ³ */
+  
+  /* Fibonacci Spacing System */
+  --spacing-1: 8px;        /* F4 */
+  --spacing-2: 13px;       /* F5 */
+  --spacing-3: 21px;       /* F6 */
+  --spacing-4: 34px;       /* F7 */
+  --spacing-5: 55px;       /* F8 */
+  --spacing-6: 89px;       /* F9 */
+  --spacing-7: 144px;      /* F10 */
+  
+  /* Golden Ratio Layout Proportions */
+  --content-width: 61.8%;  /* φ ratio */
+  --sidebar-width: 38.2%;  /* 1-φ ratio */
+  --hero-content: 62%;
+  --hero-visual: 38%;
+  
+  /* Harmonic Color System - Triadic Harmony */
+  --color-primary: #353FE0;     /* Indigo Blue - Intelligence */
+  --color-secondary: #DEA635;   /* Amber Gold - Energy */
+  --color-accent: #DFC0A5;      /* Peach Beige - Sophistication */
+  
+  /* Light Theme Palette */
+  --color-bg-light: #FEFEFE;
+  --color-surface-light: #F8F9FA;
+  --color-text-light: #1A1B23;
+  --color-text-muted-light: #4A5568;  /* Improved contrast */
+  --color-border-light: #E2E8F0;
+  
+  /* Dark Theme Palette */
+  --color-bg-dark: #0A0B0F;
+  --color-surface-dark: #131419;
+  --color-text-dark: #F7FAFC;
+  --color-text-muted-dark: #A0AEC0;
+  --color-border-dark: #2D3748;
+  
+  /* Dynamic Theme Variables */
+  --bg-primary: var(--color-bg-light);
+  --bg-surface: var(--color-surface-light);
+  --text-primary: var(--color-text-light);
+  --text-muted: var(--color-text-muted-light);
+  --border-color: var(--color-border-light);
+  
+  /* Sinusoidal Animation Curves */
+  --ease-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --ease-natural: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-harmonic: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  
+  /* Elevation & Shadow System */
+  --shadow-sm: 0 1px 3px rgba(53, 63, 224, 0.1);
+  --shadow-md: 0 4px 6px rgba(53, 63, 224, 0.12);
+  --shadow-lg: 0 10px 25px rgba(53, 63, 224, 0.15);
+  --shadow-glow: 0 0 20px rgba(222, 166, 53, 0.3);
+}
+
+/* Dark Theme Override */
+html.dark {
+  --bg-primary: var(--color-bg-dark);
+  --bg-surface: var(--color-surface-dark);
+  --text-primary: var(--color-text-dark);
+  --text-muted: var(--color-text-muted-dark);
+  --border-color: var(--color-border-dark);
+  
+  /* Dark theme shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Typography Harmony */
+.text-xs { font-size: var(--font-xs); }
+.text-sm { font-size: var(--font-sm); }
+.text-base { font-size: var(--font-base); }
+.text-lg { font-size: var(--font-lg); }
+.text-xl { font-size: var(--font-xl); }
+.text-xxl { font-size: var(--font-xxl); }
+
+/* Fibonacci Spacing Utilities */
+.mt-1, .my-1 { margin-top: var(--spacing-1); }
+.mt-2, .my-2 { margin-top: var(--spacing-2); }
+.mt-3, .my-3 { margin-top: var(--spacing-3); }
+.mt-4, .my-4 { margin-top: var(--spacing-4); }
+.mt-5, .my-5 { margin-top: var(--spacing-5); }
+
+.mb-1, .my-1 { margin-bottom: var(--spacing-1); }
+.mb-2, .my-2 { margin-bottom: var(--spacing-2); }
+.mb-3, .my-3 { margin-bottom: var(--spacing-3); }
+.mb-4, .my-4 { margin-bottom: var(--spacing-4); }
+.mb-5, .my-5 { margin-bottom: var(--spacing-5); }
+
+.p-1 { padding: var(--spacing-1); }
+.p-2 { padding: var(--spacing-2); }
+.p-3 { padding: var(--spacing-3); }
+.p-4 { padding: var(--spacing-4); }
+.p-5 { padding: var(--spacing-5); }
+
+.gap-1 { gap: var(--spacing-1); }
+.gap-2 { gap: var(--spacing-2); }
+.gap-3 { gap: var(--spacing-3); }
+.gap-4 { gap: var(--spacing-4); }
+.gap-5 { gap: var(--spacing-5); }
+
+/* Golden Ratio Containers */
+.golden-container {
+  display: grid;
+  grid-template-columns: var(--content-width) var(--sidebar-width);
+  gap: var(--spacing-4);
+}
+
+.hero-proportions {
+  display: grid;
+  grid-template-columns: var(--hero-content) var(--hero-visual);
+  gap: var(--spacing-5);
+  align-items: center;
+}
+
+/* Harmonic Animations */
+.animate-glow {
+  animation: harmonicGlow 3s var(--ease-sine) infinite;
+}
+
+.animate-float {
+  animation: harmonicFloat 4s var(--ease-natural) infinite;
+}
+
+.animate-pulse-gentle {
+  animation: gentlePulse 2s var(--ease-harmonic) infinite;
+}
+
+@keyframes harmonicGlow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(222, 166, 53, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(222, 166, 53, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes harmonicFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% { 
+    transform: translateY(-5px) rotate(1deg);
+  }
+  75% { 
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+/* Interactive Harmonics */
+.harmonic-hover {
+  transition: all 0.3s var(--ease-sine);
+}
+
+.harmonic-hover:hover {
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.harmonic-button {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border: none;
+  border-radius: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-4);
+  color: white;
+  font-weight: 600;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-sine);
+  position: relative;
+  overflow: hidden;
+}
+
+.harmonic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.harmonic-button:hover::before {
+  left: 100%;
+}
+
+.harmonic-button:hover {
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 8px 25px rgba(53, 63, 224, 0.4);
+}
+
+/* Aesthetic Grid System */
+.aesthetic-grid {
+  display: grid;
+  gap: var(--spacing-3);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.aesthetic-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--spacing-2);
+  padding: var(--spacing-4);
+  transition: all 0.3s var(--ease-natural);
+}
+
+.aesthetic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+/* Visual Rhythm & Flow */
+.section-rhythm {
+  padding: var(--spacing-6) 0;
+}
+
+.content-rhythm > * + * {
+  margin-top: var(--spacing-3);
+}
+
+.content-rhythm h1 + p,
+.content-rhythm h2 + p,
+.content-rhythm h3 + p {
+  margin-top: var(--spacing-2);
+}
+
+/* Mathematical Proportions for Forms */
+.harmonic-form {
+  max-width: calc(100% / var(--phi));
+}
+
+.harmonic-input {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--spacing-1);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: var(--font-sm);
+  transition: all 0.3s var(--ease-natural);
+}
+
+.harmonic-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(53, 63, 224, 0.1);
+}
+
+/* Responsive Harmony */
+@media (max-width: 768px) {
+  :root {
+    --font-xs: 0.5rem;
+    --font-sm: 0.875rem;
+    --font-base: 1.25rem;
+    --font-lg: 2rem;
+    --font-xl: 3.25rem;
+  }
+  
+  .golden-container,
+  .hero-proportions {
+    grid-template-columns: 1fr;
+  }
+}

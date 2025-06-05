@@ -1,28 +1,28 @@
 /* === Enhanced Design System === */
 :root {
-  /* === Color Palette - Dark Theme Default === */
-  --color-bg: #0B0D1A;
-  --color-surface: #161829;
-  --color-surface-elevated: #1E2138;
-  --color-border: #2A2F45;
-  --color-border-hover: #3A4161;
+  /* === Mathematical Design Color Palette === */
+  --color-bg: #0A0B0F;
+  --color-surface: #12131A;
+  --color-surface-elevated: #1A1C25;
+  --color-border: #2A2D3A;
+  --color-border-hover: #3A3F4F;
   
   /* Text Colors */
   --color-text: #F8FAFC;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
-  --color-text-inverse: #1E2138;
+  --color-text-secondary: #C1C7D0;
+  --color-text-muted: #7A828E;
+  --color-text-inverse: #1A1C25;
   
-  /* Brand Colors */
-  --color-primary: #4C63D2;
-  --color-primary-hover: #5A73E0;
-  --color-primary-light: rgba(76, 99, 210, 0.1);
-  --color-accent: #F7931E;
-  --color-accent-hover: #FF9F2A;
-  --color-accent-light: rgba(247, 147, 30, 0.1);
-  --color-secondary: #FF6B6B;
-  --color-secondary-hover: #FF7878;
-  --color-secondary-light: rgba(255, 107, 107, 0.1);
+  /* Core Mathematical Palette */
+  --color-primary: #353FE0;          /* Rich Indigo Blue */
+  --color-primary-hover: #4A54E8;
+  --color-primary-light: rgba(53, 63, 224, 0.12);
+  --color-accent: #DEA635;           /* Warm Amber-Gold */
+  --color-accent-hover: #E6B844;
+  --color-accent-light: rgba(222, 166, 53, 0.12);
+  --color-tertiary: #DFC0A5;        /* Soft Beige-Pink */
+  --color-tertiary-hover: #E5CCB5;
+  --color-tertiary-light: rgba(223, 192, 165, 0.12);
   
   /* Semantic Colors */
   --color-success: #10B981;
@@ -30,16 +30,38 @@
   --color-error: #EF4444;
   --color-info: #3B82F6;
   
-  /* Gradients */
+  /* Mathematical Gradients */
   --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-  --gradient-secondary: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  --gradient-mathematical: conic-gradient(from 45deg, var(--color-primary), var(--color-accent), var(--color-tertiary), var(--color-primary));
+  --gradient-fourier: radial-gradient(ellipse 150% 100% at 50% 0%, var(--color-primary), transparent 70%);
+  --gradient-neural: linear-gradient(90deg, 
+    var(--color-primary) 0%, 
+    var(--color-accent) 25%, 
+    var(--color-tertiary) 50%, 
+    var(--color-accent) 75%, 
+    var(--color-primary) 100%);
   --gradient-surface: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
-  --gradient-text: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-secondary));
+  --gradient-glow: radial-gradient(circle, var(--color-primary)33 0%, transparent 70%);
   
-  /* === Typography System === */
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  /* Mathematical Constants */
+  --golden-ratio: 1.618;
+  --phi: calc(var(--golden-ratio));
+  --fibonacci-factor: 0.618;
+  
+  /* Grid System Based on Golden Ratio */
+  --grid-unit: 8px;
+  --grid-golden: calc(var(--grid-unit) * var(--golden-ratio));
+  --grid-fibonacci-sm: calc(var(--grid-unit) * 3);
+  --grid-fibonacci-md: calc(var(--grid-unit) * 5);
+  --grid-fibonacci-lg: calc(var(--grid-unit) * 8);
+  --grid-fibonacci-xl: calc(var(--grid-unit) * 13);
+  --grid-fibonacci-2xl: calc(var(--grid-unit) * 21);
+  
+  /* === Mathematical Typography System === */
+  --font-heading: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --font-body: 'Inter', 'Spline Sans Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  --font-mathematical: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   
   /* Font Weights */
   --font-weight-light: 300;
@@ -136,6 +158,59 @@ html.light {
   
   /* Light theme specific gradients */
   --gradient-surface: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+}
+
+/* === Light Theme Support === */
+[data-theme="light"], 
+.light {
+  /* Background Colors */
+  --color-bg: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-surface-elevated: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+  
+  /* Text Colors */
+  --color-text: #1E293B;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-text-inverse: #F8FAFC;
+  
+  /* Core colors remain the same but with light variants */
+  --color-primary-light: rgba(53, 63, 224, 0.08);
+  --color-accent-light: rgba(222, 166, 53, 0.08);
+  --color-tertiary-light: rgba(223, 192, 165, 0.08);
+  
+  /* Adjust gradients for light theme */
+  --gradient-surface: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+  --gradient-glow: radial-gradient(circle, var(--color-primary)15 0%, transparent 70%);
+}
+
+/* Auto theme detection */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    /* Background Colors */
+    --color-bg: #FFFFFF;
+    --color-surface: #F8FAFC;
+    --color-surface-elevated: #F1F5F9;
+    --color-border: #E2E8F0;
+    --color-border-hover: #CBD5E1;
+    
+    /* Text Colors */
+    --color-text: #1E293B;
+    --color-text-secondary: #475569;
+    --color-text-muted: #64748B;
+    --color-text-inverse: #F8FAFC;
+    
+    /* Light variants */
+    --color-primary-light: rgba(53, 63, 224, 0.08);
+    --color-accent-light: rgba(222, 166, 53, 0.08);
+    --color-tertiary-light: rgba(223, 192, 165, 0.08);
+    
+    /* Adjust gradients for light theme */
+    --gradient-surface: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+    --gradient-glow: radial-gradient(circle, var(--color-primary)15 0%, transparent 70%);
+  }
 }
 
 /* === Enhanced Particle Animation System === */
