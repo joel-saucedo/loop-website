@@ -1,0 +1,74 @@
+/* Apply global background and text colors */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* Container to center content */
+.container {
+  width: min(90%, 1200px);
+  margin: 0 auto;
+  padding: var(--spacing) 0;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+/* Primary Button */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: background var(--transition-fast);
+}
+.btn-primary {
+  background: var(--color-accent-blue);
+  color: #fff;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  margin-bottom: var(--spacing);
+}
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+}
+h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.pb-1 { padding-bottom: 1rem; }
+
+/* Footer */
+.site-footer {
+  background: var(--color-card-bg);
+  border-top: 1px solid var(--color-card-border);
+  padding: 2rem 0;
+  margin-top: 4rem;
+}

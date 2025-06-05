@@ -1,0 +1,30 @@
+/* === Color & Typography Variables === */
+:root {
+  /* Primary Colors */
+  --color-bg: #ffffff;
+  --color-text: #1e1f37;
+  --color-accent-blue: #353FE0;  /* Your brand blue */
+  --color-accent-gold: #DEA635;  /* Complementary gold */
+  --color-accent-peach: #DFC0A5; /* Soft peach for highlights */
+
+  /* Card / Panel */
+  --color-card-bg: #ffffff;
+  --color-card-border: #353FE0;
+
+  /* Typography */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Transitions & Layout */
+  --transition-fast: 0.2s ease-in-out;
+  --radius: 8px;
+  --spacing: 1rem;
+}
+
+/* Dark‐Mode Overrides */
+html.dark {
+  --color-bg: #1E1F37;           /* Dark background */
+  --color-text: #DFDFDF;         /* Light text in dark mode */
+  --color-card-bg: #2A2C42;      /* Slightly lighter panel */
+  --color-card-border: #DFC0A5;  /* Peach border in dark mode */
+}
